@@ -121,7 +121,6 @@ def giffer(input, start, end, output, max_dimension, loops):
     a gif. It reads the fps from the input file and uses that to determine
     where to extract the frames
     """
-    print(f"loops = {loops}")
     start_frame, end_frame = get_start_and_end_frame(input, start, end)
     output_dim = None
     if max_dimension:

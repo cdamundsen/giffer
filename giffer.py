@@ -102,7 +102,7 @@ def write_gif(frames, output_file):
         frames: a list of images as returned by cv2.read call
         output_file: the path to the output gif file
     """
-    with imageio.get_writer(output_file, mode="I") as writer:
+    with imageio.get_writer(output_file, mode="I", loop=0) as writer:
         for frame in frames:
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             writer.append_data(rgb_frame)
@@ -114,12 +114,14 @@ def write_gif(frames, output_file):
 @click.option('--end', '-e', type=float, required=True, help="The ending time (in seconds) of the snippet")
 @click.option('--output', '-o', type=click.Path(exists=False), required=True, help="The name of the output file")
 @click.option('--max-dimension', '-m', type=int, help="The maximum dimension of the output file")
-def giffer(input, start, end, output, max_dimension):
+@click.option('--loops', '-l', type=int, help="The number of loops the gif should play defaults to infinite", default=0)
+def giffer(input, start, end, output, max_dimension, loops):
     """
     Takes a video file, extracts the frames from start to end and saves them as
     a gif. It reads the fps from the input file and uses that to determine
     where to extract the frames
     """
+    print(f"loops = {loops}")
     start_frame, end_frame = get_start_and_end_frame(input, start, end)
     output_dim = None
     if max_dimension:

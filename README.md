@@ -16,7 +16,7 @@ or
 - `--start` or `-s`: the time (in seconds) when the gif should start
 - `--end` or `-e`: the time (in seconds) when the gif should end
 - `--output` or `-o`: the name of the output file (giffer will not overwrite and existing file)
-- `--max-dimension` or `-m`: the maximum width or height of the output gif (in pixels). If the input file was made in landscape, this will be the width. If the input file was made in portrait mode, this will be the height
+- `--max-dimension` or `-m`: (optional) the maximum width or height of the output gif (in pixels). If the input file was made in landscape, this will be the width. If the input file was made in portrait mode, this will be the height
 
 ## To do
 I plan to add an option to include a caption in the output gif

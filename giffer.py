@@ -92,7 +92,7 @@ def get_frames(video_path, start_frame, end_frame, dimension):
     return frames
 
 
-def write_gif(frames, output_file):
+def write_gif(frames, loops, duration, output_file):
     """
     Given a list of frames read (and perhaps resized) from the input video
     file, saves them to a gif file
@@ -100,9 +100,10 @@ def write_gif(frames, output_file):
     Arguments:
 
         frames: a list of images as returned by cv2.read call
+        loops: the number of times the gif should loop
         output_file: the path to the output gif file
     """
-    with imageio.get_writer(output_file, mode="I", loop=0) as writer:
+    with imageio.get_writer(output_file, mode="I", loop=loops, duration=duration) as writer:
         for frame in frames:
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             writer.append_data(rgb_frame)
@@ -122,11 +123,12 @@ def giffer(input, start, end, output, max_dimension, loops):
     where to extract the frames
     """
     start_frame, end_frame = get_start_and_end_frame(input, start, end)
+    duration = end - start 
     output_dim = None
     if max_dimension:
         output_dim = get_output_dimensions(input, max_dimension)
     frames = get_frames(input, start_frame, end_frame, output_dim)
-    write_gif(frames, output)
+    write_gif(frames, loops, duration, output)
 
 
 if __name__ == '__main__':

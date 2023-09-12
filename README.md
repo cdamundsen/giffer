@@ -15,7 +15,7 @@ or
 - `--input` or `-i`: the path to a video file that can be read by opencv.
 - `--start` or `-s`: the time (in seconds) when the gif should start.
 - `--end` or `-e`: the time (in seconds) when the gif should end.
-- `--output` or `-o`: the name of the output file (giffer will not overwrite and existing file).
+- `--output` or `-o`: the name of the output file (giffer will not overwrite an existing file).
 - `--max-dimension` or `-m`: optional, but highly recommended. The maximum width or height of the output gif (in pixels). If the input file was made in landscape, this will be the width. If the input file was made in portrait mode, this will be the height. If not set defaults to the size of the input file.
 - `--loops`, or `-l`: optional, the number of loops of the gif that should be played. Defaults to infinite.
 - `--subtitle` or `-st`: optional, a string to be added centered near the bottom of each frame of the output gif.

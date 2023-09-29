@@ -26,6 +26,7 @@ font_faces = { 'complex': cv2.FONT_HERSHEY_COMPLEX,
                'simplex': cv2.FONT_HERSHEY_SIMPLEX,
                'triplex': cv2.FONT_HERSHEY_TRIPLEX }
 
+FRAME_STEP_SIZE = 2
 
 class GifferError(Exception):
     def __init__(self, message):
@@ -143,7 +144,7 @@ def make_gif(video_path, output_file, start_frame, end_frame, dimension, duratio
     video = cv2.VideoCapture(video_path)
     video.set(cv2.CAP_PROP_POS_FRAMES, start_frame - 1)
     with imageio.get_writer(output_file, mode="I", loop=loops, duration=duration) as writer:
-        for i in range(start_frame, end_frame + 1):
+        for i in range(start_frame, end_frame + 1, FRAME_STEP_SIZE):
             success, frame = video.read()
             if not success:
                 raise GifferError(f"Unable to read frame {i} from {video_path}")
@@ -163,6 +164,11 @@ def make_gif(video_path, output_file, start_frame, end_frame, dimension, duratio
                     line_width)
             
             writer.append_data(rgb_frame)
+
+            if FRAME_STEP_SIZE > 1:
+                # Skip over the frames we're throwing away.
+                for j in range(FRAME_STEP_SIZE - 1):
+                    _, _ = video.read()
             
 
 

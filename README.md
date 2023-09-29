@@ -23,5 +23,7 @@ or
 - `--text_size` or `-t`: optional, the size of the subtitle bounding box in pixels, defaults to 15.
 - `--font-face` or `-f`: optional the name of the cv2 hershey font face to use when writing the subtitle. Supported names: complex, complex_small, duplex, plain, script_complex, script_simplex, simplex, triplex).  Defaults to simplex.
 
+## Notes
+GIF players, according to the internet, like to play at 12 to 15 FPS. I've noticed that if I convert a 24 FPS video segment to a GIF, it takes roughly twice as long to play as the interval I selected from the video. So the internet appears to be correct. I've added a fudge factor that adds every other frame from the desired interval when creating the GIF. This should make it play in the appropriate time for 24 or 30 FPS input videos, at the expense of making the GIF a bit choppy.
 ## To do
 I'd like to add the option to read the Tx3g subtitle from the input file and use that as the subtitle.

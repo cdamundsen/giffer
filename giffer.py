@@ -26,6 +26,10 @@ font_faces = { 'complex': cv2.FONT_HERSHEY_COMPLEX,
                'simplex': cv2.FONT_HERSHEY_SIMPLEX,
                'triplex': cv2.FONT_HERSHEY_TRIPLEX }
 
+# GIFs won't play at 24 fps (or higher). The internet says 12 to 15 fps is what
+# they try to play. This fudge factor is to reduce the number of frames between
+# the start and stop times. For 24 or 30 fps videos, this will reduce it to what
+# GIF players can handle.
 FRAME_STEP_SIZE = 2
 
 class GifferError(Exception):
